@@ -1,0 +1,20 @@
+{
+  "name": "time-clock-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.10.2",
+    "restify": "^4.0.4",
+    "restify-validator": "^0.3.1",
+    "sequelize": "^3.23.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.15.1"
+  }
+}
