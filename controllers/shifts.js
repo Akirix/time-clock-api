@@ -19,7 +19,34 @@ exports.view = function( req, res, next ){
 };
 
 exports.update = function( req, res, next ){
-    console.log( 'update' );
+    var data = req.body.shift;
+    Shift.findOne( {
+        where: {
+            id: req.params.shift_id
+        }
+    } )
+        .then( function( shift ){
+            if( !shift ){
+                res.send( 404, { errors: [ 'Shift was not found' ] } );
+                return next();
+            }
+            else{
+                shift.shift_date = data.shift_date;
+                shift.type = data.type;
+                shift.hours = data.hours;
+                shift.pay_period = data.pay_period;
+                shift.save()
+                    .then( function(){
+                        res.send( 200, { shift: shift } );
+                        return next();
+                    } )
+            }
+
+        } )
+        .catch( function( err ){
+            res.send( 400, { errors: [ err ] } );
+            return next();
+        } );
 };
 
 exports.create = function( req, res, next ){
