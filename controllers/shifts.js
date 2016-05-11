@@ -15,7 +15,25 @@ exports.index = function( req, res, next ){
 };
 
 exports.view = function( req, res, next ){
-    console.log( 'view' );
+    Shift.findOne( {
+        where: {
+            id: req.params.shift_id
+        }
+    } )
+        .then( function( shift ){
+            if( !shift ){
+                res.send( 404, { errors: [ 'Shift was not found' ] } );
+                return next();
+            }
+            else{
+                res.send( 200, { shift: shift } );
+                return next();
+            }
+        } )
+        .catch( function( err ){
+            //res.send( 400, { errors: [ err ] } );
+            return next();
+        } );
 };
 
 exports.update = function( req, res, next ){
@@ -44,7 +62,7 @@ exports.update = function( req, res, next ){
 
         } )
         .catch( function( err ){
-            res.send( 400, { errors: [ err ] } );
+            //res.send( 400, { errors: [ err ] } );
             return next();
         } );
 };
