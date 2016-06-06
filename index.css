@@ -6,9 +6,7 @@ html, body {
     padding: 0;
 }
 
-body {
-    margin-top: 200px;
-}
+
 
 @font-face {
     font-family: openSans;
@@ -48,7 +46,7 @@ body {
 }
 
 .calendar-table {
-    margin-top: 28px;
+    margin-top: 36px;
     width: 100%;
 }
 
@@ -79,12 +77,20 @@ body {
     background-color: #fff;
     border: solid 1px #ddd;
     height: 100%;
-    padding: 28px 6px 6px;
+    padding: 18px 6px 6px;
+}
+
+.calendar-form-wrapper, .calendar-form-wrapper .hours {
+    color: #333;
 }
 
 .calendar-form-wrapper.inactive {
     background-color: #f5f5f5;
     border: none;
+}
+
+.calendar-form-wrapper.inactive, .calendar-form-wrapper.inactive .calendar-date, .calendar-form-wrapper.inactive .hours {
+    color: #777;
 }
 
 
@@ -129,3 +135,111 @@ select {
     content: '\25BE \00a0';
 }
 
+
+.work-type input {
+    margin-left: 15px;
+    margin-top: 4px;
+    padding: 2px 4px;
+    font-family: openSans, Arial, sans-serif;
+    border: none;
+    border-bottom: solid 1px #ddd;
+    display: none;
+}
+.work-type input.on {
+    display: inline-block;
+}
+
+.work-type input:focus {
+    outline: none;
+}
+
+
+
+.hours {
+    font-family: openSans, Arial, sans-serif;
+    font-size: 22px;
+    display: inline-block;
+    text-align: center;
+    width: 36px;
+    border: none;
+    border-bottom: solid 1px #ddd;
+    background-color: transparent;
+}
+
+.hours:focus {
+    outline: none;
+}
+
+form {
+    margin-bottom: 0;
+}
+
+.hours-wrapper {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.hours-label {
+    font-family: openSans, Arial, sans-serif;
+    font-size: 18px;
+}
+
+.logo {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    top: 4px;
+    margin-right: 16px;
+}
+
+header {
+    text-align: center;
+    margin: 20px 0 40px;
+}
+
+.header-wrapper {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+}
+
+h1 {
+    display: inline-block;
+    font-family: openSans;
+    font-size: 20px;
+    color: #777;
+}
+
+.date-name {
+    text-align: center;
+}
+
+.date-name-wrapper {
+    display: inline-block;
+    width: 90%;
+}
+
+.date, .name {
+    display: inline-block;
+    font-family: playfair;
+    color: #333;
+    line-height: 32px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+
+.date {
+    float: left;
+    font-size: 32px;
+}
+
+.name {
+    float: right;
+    font-size: 28px;
+}
+
+.date-model-wrapper div {
+    display: none;
+}
