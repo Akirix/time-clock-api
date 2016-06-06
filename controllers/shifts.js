@@ -3,6 +3,7 @@ var Shift = db.Shift;
 var util = require( 'util' );
 
 exports.index = function( req, res, next ){
+    console.log(req.body);
     Shift.findAll()
         .then( function( shifts ){
             res.send( 200, { shifts: shifts } );
@@ -68,6 +69,7 @@ exports.update = function( req, res, next ){
 
 exports.create = function( req, res, next ){
     var data = req.body.shift;
+    console.log(req.body);
     var newShift = Shift.build( {
         user_id: data.user_id,
         shift_date: data.shift_date,
