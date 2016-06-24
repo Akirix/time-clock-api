@@ -21,6 +21,7 @@ html, body {
 .calendar-wrapper {
     display: block;
     text-align: center;
+    margin-bottom: 12px;
 }
 
 .calendar {
@@ -231,8 +232,30 @@ h1 {
 }
 
 .date {
-    float: left;
     font-size: 32px;
+}
+
+.date-wrapper .before {
+    transform: rotate(180deg);
+    margin-right: 12px;
+    bottom: 2px;
+}
+
+.date-wrapper .after {
+    margin-left: 12px;
+}
+
+.date-wrapper .before, .date-wrapper .after {
+    display: inline-block;
+    position: relative;
+    font-size: 22px;
+    color: #eee;
+    cursor: pointer;
+    transition: color 0.1s;
+}
+
+.date-wrapper .before:hover, .date-wrapper .after:hover {
+    color: #999;
 }
 
 .name {
@@ -242,4 +265,31 @@ h1 {
 
 .date-model-wrapper div {
     display: none;
+}
+
+.calendar-container {
+    max-width: 2000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.submit-wrap {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+}
+
+.btn-submit {
+    border: none;
+    background-color: #20aae1;
+    color: #fff;
+    font-size: 18px;
+    font-family: openSans;
+    font-weight: 300;
+    padding: 12px;
+}
+
+.date-wrapper { 
+    display: inline-block;
+    float: left;
 }

@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <body>
+
+        <div class="date-model-wrapper">
+            <div class="calendar-form-wrapper">
+                <span class="calendar-date"></span>
+                <form>
+                    <div class="work-type">
+                        <div class="work-type-selected">Normal work time</div>
+                        <div class="work-type-options"> 
+                            <div class="selected">Normal work time</div>
+                            <div>Paid time off</div>
+                            <div>Non-paid time off</div>
+                            <div>Other</div>
+                        </div>
+                        <input class="specify" type="text" placeholder="Please specify">
+                    </div>
+                    <div class="hours-wrapper">
+                        <input class="hours" type="text" value="8">
+                        <span class="hours-label">hrs</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+
+            <header>
+                <div class="header-wrapper">
+                    <img class="logo" src="img/logo.png" width="100">
+                    <h1>Employee Timesheet</h1>
+                </div>
+            </header>
+
+            <div class="date-name">
+                <div class="date-name-wrapper">
+                    <h2 class="date"></h2>
+                    <h2 class="name">John Carter</h2>
+                </div>
+            </div>
+
+            <div class="calendar-rings-wrapper">
+                <div class="calendar-rings"></div>
+                <div class="calendar-rings"></div>
+                <div class="calendar-rings"></div>
+            </div>
+
+            <div class="calendar-wrapper">
+                <div class="calendar">
+                    <table class="calendar-table">
+                        <tr class="calendar-header">
+                            <th>M</th>
+                            <th>Tu</th>
+                            <th>W</th>
+                            <th>Th</th>
+                            <th>F</th>
+                            <th>Sa</th>
+                            <th>Su</th>
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                        </tr>
+                    </table> 
+                </div>
+            </div>
+
+            <div class="submit-wrap">
+                <button class="btn-submit">Submit</button>
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+        <script>
+
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            var d = new Date();
+            var month = d.getMonth();
+            var year = d.getFullYear();
+            $('.date').html(months[month] + ' ' + year);
+
+            var first = new Date(year, month, 1);
+            var last = new Date(year, month + 1, 0);
+
+            var rowCounter = 0;
+
+            $(function() {
+
+                $('tr:not(.calendar-header)').each(function(index) {
+                    $(this).attr('data-row', index);
+                    $(this).children('td').each(function(index) {
+                        if (index == 6) {
+                            $(this).attr('data-col', 0);
+                        } else {
+                            $(this).attr('data-col', index + 1);
+                        }
+                    })
+                });
+
+                for (i = 1; i <= last.getDate(); i++) {
+                    var current = new Date(year, month, i).getDay();
+                    var $dateCell = $('tr[data-row=' + rowCounter + '] td[data-col=' + current + ']');
+                    $dateCell.html($('.date-model-wrapper').html());
+                    $dateCell.find('.calendar-date').html(i);
+                    if (current == 6 || current == 0) {
+                        $dateCell.find('.calendar-form-wrapper').addClass('inactive');
+                        $dateCell.find('.hours').attr('value', 0);
+                    }
+                    if (current == 0) { rowCounter += 1 }
+                }
+
+                $('.calendar-form-wrapper').each(function(index) {
+                    $(this).find('.work-type').attr("data-index", index);
+                    $(this).find('.work-type-selected').attr("data-index", index);
+                    $(this).find('.work-type-options').attr("data-index", index);
+                    $(this).find('input.specify').attr("data-index", index);
+                });
+                $('.work-type-selected').click(function() {
+                    var index = $(this).attr('data-index');
+                    $('.work-type-options[data-index="' + index + '"]').toggleClass('on');
+                });
+                $('.work-type-options div').click(function() {
+                    var index = $(this).parent().attr('data-index');
+                    var selected = $(this).html();
+                    $('.work-type-options[data-index="' + index + '"] .selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('.work-type-selected[data-index="' + index + '"]').html(selected);
+                    $('.work-type-options[data-index="' + index + '"]').removeClass('on');
+                    if (selected == 'Other') {
+                        $('input[data-index="' + index + '"]').addClass('on');
+                        $('input[data-index="' + index + '"]').focus();
+                    } else {
+                        $('input[data-index="' + index + '"]').removeClass('on');
+                    }
+                })
+            })
+
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
