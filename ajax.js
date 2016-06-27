@@ -1,4 +1,5 @@
 var api = 'http://localhost:3000';
+console.log('hey');
 
 $( '#test-getShifts' ).click( function(){
     $.ajax( {
@@ -14,6 +15,21 @@ $( '#test-getShifts' ).click( function(){
         .error( function( err ){
             console.log( err );
         } );
+} );
+
+$( '#shifts-submit' ).click( function(){
+    var shifts = [];
+    $('.calendar-form-wrapper').each(function() {
+        shifts.push(
+            { 
+                user: $('.name').html(),
+                date: new Date($('.year').html() + ' ' + $('.month').html() + ' ' + $(this).find('.calendar-date').html()),
+                worktype: $(this).find('.work-type-selected').html(),
+                hours: $(this).find('.hours').val()
+            }
+        );
+    });
+    console.log(shifts);
 } );
 
 $( '#test-postShifts' ).click( function(){
