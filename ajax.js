@@ -17,20 +17,30 @@ $( '#test-getShifts' ).click( function(){
         } );
 } );
 
+// here is the shifts object. feel free to edit if needed
 $( '#shifts-submit' ).click( function(){
-    var shifts = [];
-    $('.calendar-form-wrapper').each(function() {
-        shifts.push(
+    var shifts = {};
+    var date = new Date($('.year').html() + ' ' + $('.month').html());
+    var year = date.getFullYear();
+    var month = date.getMonth();
+    shifts.name = $('.name').html();
+    shifts.year = year;
+    shifts.month = month;
+    shifts.shifts = [];
+    $('.calendar-form-wrapper:not(.sample)').each(function() {
+        if ($(this).hasClass('inactive') && $(this).find('.hours').val() == 0) {
+            return;
+        }
+        shifts.shifts.push(
             { 
-                user: $('.name').html(),
-                date: new Date($('.year').html() + ' ' + $('.month').html() + ' ' + $(this).find('.calendar-date').html()),
+                date: $(this).find('.calendar-date').html(),
                 worktype: $(this).find('.work-type-selected').html(),
                 hours: $(this).find('.hours').val()
             }
         );
     });
-    console.log(shifts);
-} );
+    console.log(JSON.stringify(shifts));
+});
 
 $( '#test-postShifts' ).click( function(){
     var data = JSON.stringify( {
