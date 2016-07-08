@@ -27,7 +27,7 @@ $( '#shifts-submit' ).click( function(){
     shifts.year = year;
     shifts.month = month;
     shifts.shifts = [];
-    $('.calendar-form-wrapper:not(.sample)').each(function() {
+    $('.calendar-form-wrapper:not(.template)').each(function() {
         if ($(this).hasClass('inactive') && $(this).find('.hours').val() == 0) {
             return;
         }

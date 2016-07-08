@@ -5,7 +5,7 @@
     <body>
 
         <div class="date-model-wrapper">
-            <div class="calendar-form-wrapper">
+            <div class="calendar-form-wrapper template">
                 <span class="calendar-date"></span>
                 <form>
                     <div class="work-type">
@@ -133,14 +133,55 @@
         <script src="ajax.js" type="text/javascript"></script>
         <script>
 
+            // arrays for turning date number values into month/day strings
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+            // global date variables
             var d = new Date();
             var month = d.getMonth();
             var year = d.getFullYear();
-            $('.date').html('<span class="month">' + months[month] + '</span>' + ' ' + '<span class="year">' + year + '</span>');
+            var first;
+            var last;
 
+            var rowCounter;
+
+            function setDates() {
+                $('.calendar-form-wrapper:not(.template)').remove();
+
+                rowCounter = 0;
+
+                var first = new Date(year, month, 1);
+                var last = new Date(year, month + 1, 0);
+
+                // put dates in place
+                for (i = 1; i <= last.getDate(); i++) {
+                    var current = new Date(year, month, i).getDay();
+                    var $dateCell = $('tr[data-row=' + rowCounter + '] td[data-col=' + current + ']');
+                    $dateCell.html($('.date-model-wrapper').html());
+                    $dateCell.find('.calendar-form-wrapper').removeClass('template');
+                    $dateCell.find('.calendar-date').html(i);
+                    if (current == 6 || current == 0) {
+                        $dateCell.find('.calendar-form-wrapper').addClass('inactive');
+                        $dateCell.find('.hours').attr('value', 0);
+                    }
+                    if (current == 0) { rowCounter += 1 }
+                }
+
+                // add order number to elements within date box
+                $('.calendar-form-wrapper').each(function(index) {
+                    $(this).find('.work-type').attr("data-index", index);
+                    $(this).find('.work-type-selected').attr("data-index", index);
+                    $(this).find('.work-type-options').attr("data-index", index);
+                    $(this).find('input.specify').attr("data-index", index);
+                });
+            }
+
+            function setHeaderDate() {
+                $('.date').html('<span class="month">' + months[month] + '</span>' + ' ' + '<span class="year">' + year + '</span>');
+            }
+
+            // change date in header when user clicks arrows
             function changeMonth(d) {
                 month += d;
                 if (month < 0) {
@@ -150,16 +191,13 @@
                     month = 0;
                     year +=1;
                 }
-                $('.date').html(months[month] + ' ' + year);
+                setHeaderDate();
+                setDates();
             }
-
-            var first = new Date(year, month, 1);
-            var last = new Date(year, month + 1, 0);
-
-            var rowCounter = 0;
 
             $(function() {
 
+                // number rows and columns
                 $('tr:not(.calendar-header)').each(function(index) {
                     $(this).attr('data-row', index);
                     $(this).children('td').each(function(index) {
@@ -170,25 +208,11 @@
                         }
                     })
                 });
+                
+                setHeaderDate();
+                setDates();
 
-                for (i = 1; i <= last.getDate(); i++) {
-                    var current = new Date(year, month, i).getDay();
-                    var $dateCell = $('tr[data-row=' + rowCounter + '] td[data-col=' + current + ']');
-                    $dateCell.html($('.date-model-wrapper').html());
-                    $dateCell.find('.calendar-date').html(i);
-                    if (current == 6 || current == 0) {
-                        $dateCell.find('.calendar-form-wrapper').addClass('inactive');
-                        $dateCell.find('.hours').attr('value', 0);
-                    }
-                    if (current == 0) { rowCounter += 1 }
-                }
-
-                $('.calendar-form-wrapper').each(function(index) {
-                    $(this).find('.work-type').attr("data-index", index);
-                    $(this).find('.work-type-selected').attr("data-index", index);
-                    $(this).find('.work-type-options').attr("data-index", index);
-                    $(this).find('input.specify').attr("data-index", index);
-                });
+                // work type dropdown
                 $('.work-type-selected').click(function() {
                     var index = $(this).attr('data-index');
                     $('.work-type-options[data-index="' + index + '"]').toggleClass('on');
@@ -207,7 +231,6 @@
                         $('input[data-index="' + index + '"]').removeClass('on');
                     }
                 });
-                $('.date-model-wrapper').remove();
             })
 
         </script>
