@@ -73,6 +73,7 @@ input:focus {
     color: #ff0000;
     font-family: openSans;
     font-size: 14px;
+    margin: 0;
 }
 
 .login-error.show {
@@ -104,4 +105,16 @@ input:focus {
     padding: 16px;
     cursor: pointer;
     float: right;
+}
+
+.login-success {
+    display: none;
+    color: #00ff00;
+    font-family: openSans;
+    font-size: 14px;
+    margin: 0;
+}
+
+.login-success.show {
+    display: block;
 }
