@@ -98,13 +98,14 @@ input:focus {
 .btn-create {
     border: none;
     background-color: transparent;
+    float: right;
+    text-decoration: none;
     color: #20aae1;
     font-size: 14px;
     font-family: openSans;
-    font-weight: 300;
     padding: 16px;
+    font-weight: 300;
     cursor: pointer;
-    float: right;
 }
 
 .login-success {

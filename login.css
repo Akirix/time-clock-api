@@ -97,11 +97,17 @@ input:focus {
 .btn-create {
     border: none;
     background-color: transparent;
-    color: #20aae1;
+    float: right;
     font-size: 14px;
     font-family: openSans;
-    font-weight: 300;
     padding: 16px;
+    font-weight: 300;
     cursor: pointer;
-    float: right;
 }
+
+.btn-create > a {
+    text-decoration: none;
+    color: #20aae1;
+}
+
+
