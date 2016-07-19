@@ -1,34 +1,27 @@
-
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
 }
-
-
-
 @font-face {
     font-family: openSans;
     src: url(fonts/OpenSans-Light.ttf);
 }
-
 @font-face {
     font-family: playfair;
     src: url(fonts/PlayfairDisplaySC-Black.ttf);
 }
-
 .calendar-wrapper {
     display: block;
     text-align: center;
+    margin-bottom: 12px;
 }
-
 .calendar {
     display: inline-block;
     width: 90%;
     border-top: solid 4px #20aae1;
 }
-
 .calendar-rings {
     display: inline-block;
     position: relative;
@@ -39,23 +32,19 @@ html, body {
     border-radius: 6px;
     background-color: #20aae1;
 }
-
 .calendar-rings-wrapper {
     display: block;
     text-align: center;
 }
-
 .calendar-table {
     margin-top: 36px;
     width: 100%;
 }
-
 .calendar-table th {
     font-family: openSans, Arial, sans-serif;
     font-size: 20px;
     width: 14.29%;
 }
-
 .calendar-table td {
     width: 14.29%;
     height: 140px;
@@ -63,7 +52,6 @@ html, body {
     vertical-align: top;
     position: relative;
 }
-
 .calendar-date {
     font-family: playfair, Georgia, serif;
     position: absolute;
@@ -71,7 +59,6 @@ html, body {
     top: 4px;
     color: #555;
 }
-
 .calendar-form-wrapper {
     position: relative;
     background-color: #fff;
@@ -79,31 +66,23 @@ html, body {
     height: 100%;
     padding: 18px 6px 6px;
 }
-
 .calendar-form-wrapper, .calendar-form-wrapper .hours {
     color: #333;
 }
-
 .calendar-form-wrapper.inactive {
     background-color: #f5f5f5;
     border: none;
 }
-
 .calendar-form-wrapper.inactive, .calendar-form-wrapper.inactive .calendar-date, .calendar-form-wrapper.inactive .hours {
     color: #777;
 }
-
-
-
 select {
     width: 100%;
 }
-
 .work-type, .work-type-options {
     font-family: openSans, Arial, sans-serif;
     font-size: 14px;
 }
-
 .work-type-options {
     position: absolute;
     display: none;
@@ -114,28 +93,21 @@ select {
     padding: 2px 5px;
     width: 90%
 }
-
 .work-type-options.on {
     display: block;
 }
-
 .work-type {
     position: relative;
 }
-
 .work-type-selected, .work-type-options {
     cursor: default;
 }
-
 .work-type-selected {
     padding-left: 6px;
 }
-
 .work-type-selected::before {
     content: '\25BE \00a0';
 }
-
-
 .work-type input {
     margin-left: 15px;
     margin-top: 4px;
@@ -148,13 +120,9 @@ select {
 .work-type input.on {
     display: inline-block;
 }
-
 .work-type input:focus {
     outline: none;
 }
-
-
-
 .hours {
     font-family: openSans, Arial, sans-serif;
     font-size: 22px;
@@ -165,26 +133,21 @@ select {
     border-bottom: solid 1px #ddd;
     background-color: transparent;
 }
-
 .hours:focus {
     outline: none;
 }
-
 form {
     margin-bottom: 0;
 }
-
 .hours-wrapper {
     display: block;
     text-align: center;
     margin-top: 8px;
 }
-
 .hours-label {
     font-family: openSans, Arial, sans-serif;
     font-size: 18px;
 }
-
 .logo {
     display: inline-block;
     max-width: 100%;
@@ -193,34 +156,28 @@ form {
     top: 4px;
     margin-right: 16px;
 }
-
 header {
     text-align: center;
     margin: 20px 0 40px;
 }
-
 .header-wrapper {
     display: inline-block;
     width: 90%;
     text-align: left;
 }
-
 h1 {
     display: inline-block;
     font-family: openSans;
     font-size: 20px;
     color: #777;
 }
-
 .date-name {
     text-align: center;
 }
-
 .date-name-wrapper {
     display: inline-block;
     width: 90%;
 }
-
 .date, .name {
     display: inline-block;
     font-family: playfair;
@@ -229,17 +186,55 @@ h1 {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
 }
-
 .date {
-    float: left;
     font-size: 32px;
 }
-
+.date-wrapper .before {
+    transform: rotate(180deg);
+    margin-right: 12px;
+    bottom: 2px;
+}
+.date-wrapper .after {
+    margin-left: 12px;
+}
+.date-wrapper .before, .date-wrapper .after {
+    display: inline-block;
+    position: relative;
+    font-size: 22px;
+    color: #eee;
+    cursor: pointer;
+    transition: color 0.1s;
+}
+.date-wrapper .before:hover, .date-wrapper .after:hover {
+    color: #999;
+}
 .name {
     float: right;
     font-size: 28px;
 }
-
 .date-model-wrapper div {
     display: none;
+}
+.calendar-container {
+    max-width: 2000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.submit-wrap {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+}
+.btn-submit {
+    border: none;
+    background-color: #20aae1;
+    color: #fff;
+    font-size: 18px;
+    font-family: openSans;
+    font-weight: 300;
+    padding: 12px;
+}
+.date-wrapper {
+    display: inline-block;
+    float: left;
 }

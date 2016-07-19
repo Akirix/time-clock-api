@@ -1,0 +1,121 @@
+@font-face {
+    font-family: openSans;
+    src: url(fonts/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: playfair;
+    src: url(fonts/PlayfairDisplaySC-Black.ttf);
+}
+
+
+
+.column-wrap {
+    display: block;
+    text-align: center;
+}
+
+.column {
+    display: inline-block;
+    width: 400px;
+}
+
+.header-wrapper {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+}
+
+.logo {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    top: 4px;
+    margin-right: 16px;
+}
+
+h1 {
+    display: inline-block;
+    font-family: openSans;
+    font-size: 20px;
+    color: #777;
+}
+
+h2 {
+    display: inline-block;
+    font-family: openSans;
+    font-size: 32px;
+    color: #777;
+}
+
+form {
+    text-align: left;
+    font-family: playfair;
+}
+
+input {
+    margin: 6px 0 72px 0;
+    border: none;
+    border-bottom: solid 1px #777;
+    font-family: openSans;
+    width: 100%;
+    font-size: 16px;
+    padding: 6px 0 4px 4px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.login-error {
+    display: none;
+    color: #ff0000;
+    font-family: openSans;
+    font-size: 14px;
+    margin: 0;
+}
+
+.login-error.show {
+    display: block;
+}
+
+.btn-submit {
+    border: none;
+    background-color: #20aae1;
+    color: #fff;
+    font-size: 18px;
+    font-family: openSans;
+    font-weight: 300;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.btn-wrap {
+    text-align: left;
+}
+
+.btn-create {
+    border: none;
+    background-color: transparent;
+    float: right;
+    text-decoration: none;
+    color: #20aae1;
+    font-size: 14px;
+    font-family: openSans;
+    padding: 16px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.login-success {
+    display: none;
+    color: #00ff00;
+    font-family: openSans;
+    font-size: 14px;
+    margin: 0;
+}
+
+.login-success.show {
+    display: block;
+}
