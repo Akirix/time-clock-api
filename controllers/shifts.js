@@ -11,10 +11,7 @@ exports.index = function(req, res, next) {
             return next();
         })
         .catch(function(err) {
-            res.send(400, {
-                errors: [err]
-            });
-            return next();
+            throw err;
         })
 };
 
@@ -38,7 +35,7 @@ exports.view = function(req, res, next) {
             }
         })
         .catch(function(err) {
-            return next();
+            throw err;
         });
 };
 
