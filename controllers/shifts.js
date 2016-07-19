@@ -77,7 +77,7 @@ exports.update = function(req, res, next) {
 };
 
 exports.create = function(req, res, next) {
-    var data = req.body.schedule;
+    var data = req.body.timesheet;
     console.log(data.shifts);
     var newShift = Shift.build({
         user_id: data.user_id,

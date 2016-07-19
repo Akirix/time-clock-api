@@ -42,7 +42,7 @@ $('#shifts-submit').click(function() {
             url: api + '/shifts',
             contentType: 'application/json',
             data: JSON.stringify({
-                schedule: {
+                timesheet: {
                     shifts
                 }
             })
