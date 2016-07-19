@@ -78,26 +78,31 @@ exports.update = function(req, res, next) {
 
 exports.create = function(req, res, next) {
     var data = req.body.timesheet;
-    console.log(data.shifts);
-    var newShift = Shift.build({
-        user_id: data.user_id,
-        shift_date: data.shift_date,
-        type: data.type,
-        hours: data.hours,
-        pay_period: data.pay_period
+    var promises = [];
+
+    data.shifts.forEach(function(shift) {
+        promises.push(
+            Shift.create({
+                user_id: data.user_id,
+                shift_date: shift.shift_date,
+                type: shift.type,
+                hours: shift.hours,
+                pay_period: data.pay_period
+            }));
     });
 
-    newShift.save()
+    Promise.all(promises)
         .then(function() {
-            res.send(201, {
-                shift: newShift
-            });
-            return next();
+            res.send(201, 'Success!');
         })
         .catch(function(err) {
-            res.send(400, {
-                errors: [err]
-            });
-            return next();
+            if (err.name === "SequelizeValidationError") {
+                res.send(422, {
+                    errors: [err]
+                });
+                return next();
+            } else {
+                throw err;
+            }
         });
 };

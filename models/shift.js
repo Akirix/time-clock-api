@@ -7,7 +7,7 @@ module.exports = function( sequelize, DataTypes ){
             primaryKey: true
         },
         user_id: DataTypes.STRING,
-        shift_date: DataTypes.DATE,
+        shift_date: DataTypes.INTEGER,
         type: DataTypes.STRING,
         hours: DataTypes.INTEGER,
         pay_period: DataTypes.INTEGER
